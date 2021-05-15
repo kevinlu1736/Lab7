@@ -16,7 +16,7 @@ if('serviceWorker' in navigator) {
          * chrome://inspect/#service-workers to check on the workers
          * chrome://serviceworker-internals for details
          */
-        navigator.serviceWorker.register('/sw.js').then((registration) => {
+        navigator.serviceWorker.register('/Lab7/sw.js').then((registration) => {
             console.log('ServiceWorker registration successful with scope: ', registration.scope)
         }, (err) => {
             console.log('ServiceWorker registration failed: ', err)
