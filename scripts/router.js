@@ -51,7 +51,7 @@ function setupPage() {
   if (page == "#settings") {
     body.className = "settings"
     title.innerHTML = "Settings"
-  } else if (page == "/") {
+  } else if (page == "./") {
     body.className = ""
     title.innerHTML = "Journal Entries"
   } else if (page.startsWith("#entry")) {

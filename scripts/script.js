@@ -28,7 +28,7 @@ settingsButton.addEventListener('click', () => {
 })
 
 pageTitle.addEventListener('click', () => {
-  setState("/", true)
+  setState("./", true)
 })
 
 window.addEventListener('popstate', (event) => {
