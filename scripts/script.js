@@ -17,16 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
         newPost.entry = entry;
         document.querySelector('main').appendChild(newPost);
         newPost.addEventListener('click', () => {
-          setState("entry" + i)
+          setState("#entry" + i, true)
         })
       });
     });
 });
 
 settingsButton.addEventListener('click', () => {
-  setState("settings")
+  setState("#settings", true)
 })
 
 pageTitle.addEventListener('click', () => {
-  setState("entries")
+  setState("/", true)
 })
+
+window.addEventListener('popstate', (event) => {
+  setState(event.state.page, false)
+})
+

@@ -5,7 +5,7 @@ export const router = {};
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function(path) {
+router.setState = function(path, needPush) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -36,28 +36,35 @@ router.setState = function(path) {
    *    2. You may modify the parameters of setState() as much as you like
    */
   
-  window.history.pushState({page: path}, path, path)
+  if (needPush) {
+    window.history.pushState({page: path}, path, path)
+  }
   setupPage()
 }
 
-const body = document.querySelector("body")
+
 
 function setupPage() {
+  const body = document.querySelector("body")
+  const title = document.querySelector("body header h1")
   const page = window.history.state.page
-  if (page == "settings") {
+  if (page == "#settings") {
     body.className = "settings"
-  } else if (page == "entries") {
+    title.innerHTML = "Settings"
+  } else if (page == "/") {
     body.className = ""
-  } else if (page.startsWith("entry")) {
+    title.innerHTML = "Journal Entries"
+  } else if (page.startsWith("#entry")) {
+    body.className = "single-entry"
     //remove existing entry
     body.removeChild(document.querySelector("entry-page"))
     
     //create add add new entry
     const newEntryPage = document.createElement("entry-page")
-    const entryId = page.slice(5)
+    const entryId = page.slice(6)
     newEntryPage.entry = document.querySelectorAll("main journal-entry")[entryId].entry
     body.insertBefore(newEntryPage, body.children[2])
     
-    body.className = "single-entry"
+    title.innerHTML = "Entry " + (parseInt(entryId) + 1)
   }
 }
